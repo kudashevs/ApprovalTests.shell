@@ -9,7 +9,7 @@ CHECK="\u2713"
 CROSS="\u2715"
 
 default_diff_tool="git diff --no-index"
-diff_tool=$default_diff_tool
+diff_tool=${default_diff_tool}
 
 while getopts ":r:t:d:" opt; do
     case $opt in
@@ -20,16 +20,16 @@ while getopts ":r:t:d:" opt; do
     esac
 done
 
-received="$test_name.received"
-approved="$test_name.approved"
+received="${test_name}.received"
+approved="${test_name}.approved"
 
-if [ "$received_text" == "" ]; then
-    cat - >"$received"
+if [[ "$received_text" == "" ]]; then
+    cat - >"${received}"
 else
-    echo "$received_text" >"$received"
+    echo "${received_text}" >"${received}"
 fi
 
-touch "$approved"
+touch "${approved}" || { echo "Failed to create ${approved}"; exit 1; }
 
 diff -q "$received" "$approved" >/dev/null &&
     (
@@ -38,7 +38,7 @@ diff -q "$received" "$approved" >/dev/null &&
         else
             echo "${test_name} passed"
         fi
-        rm "$received"
+        rm "${received}"
         echo ""
         true
     ) ||
@@ -46,11 +46,11 @@ diff -q "$received" "$approved" >/dev/null &&
         if [ -t 1 ]; then
             echo -e "${RED} ${CROSS} ${RED_BG} fail ${RESET} ${test_name} failed"
             echo ""
-            $diff_tool "$received" "$approved" --color=always </dev/tty | sed 's/^/    /'
+            ${diff_tool} "${received}" "${approved}" --color=always </dev/tty | sed 's/^/    /'
         else
             echo "test failed"
             echo ""
-            $diff_tool "$received" "$approved" | sed 's/^/    /'
+            ${diff_tool} "${received}" "${approved}" | sed 's/^/    /'
         fi
         echo ""
         false
