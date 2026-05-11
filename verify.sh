@@ -23,18 +23,35 @@ fi
 
 touch "$approved"
 
+GREEN_BG="\033[42m\033[30m"
+RED_BG="\033[41m\033[37m"
+GREEN="\033[32m"
+RED="\033[31m"
+RESET="\033[0m"
+CHECK="\u2713"
+CROSS="\u2715"
+
 diff -q "$received" "$approved" >/dev/null &&
     (
-        echo "test passed"
+        if [ -t 1 ]; then
+            echo -e "${GREEN} ${CHECK} ${GREEN_BG} pass ${RESET} ${test_name} passed"
+        else
+            echo "${test_name} passed"
+        fi
+        echo ""
         rm "$received"
     ) ||
     (
-        echo "test failed"
         if [ -t 1 ]; then
-            $diff_tool "$received" "$approved" </dev/tty
+            echo -e "${RED} ${CROSS} ${RED_BG} fail ${RESET} ${test_name} failed"
+            echo ""
+            $diff_tool "$received" "$approved" --color=always </dev/tty | sed 's/^/    /'
         else
-            $diff_tool "$received" "$approved"
+            echo "test failed"
+            echo ""
+            $diff_tool "$received" "$approved" | sed 's/^/    /'
         fi
+        echo ""
         false
     )
 
