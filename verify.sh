@@ -1,5 +1,13 @@
 #!/bin/bash
 
+GREEN_BG="\033[42m\033[30m"
+RED_BG="\033[41m\033[37m"
+GREEN="\033[32m"
+RED="\033[31m"
+RESET="\033[0m"
+CHECK="\u2713"
+CROSS="\u2715"
+
 default_diff_tool="git diff --no-index"
 diff_tool=$default_diff_tool
 
@@ -22,14 +30,6 @@ else
 fi
 
 touch "$approved"
-
-GREEN_BG="\033[42m\033[30m"
-RED_BG="\033[41m\033[37m"
-GREEN="\033[32m"
-RED="\033[31m"
-RESET="\033[0m"
-CHECK="\u2713"
-CROSS="\u2715"
 
 diff -q "$received" "$approved" >/dev/null &&
     (
