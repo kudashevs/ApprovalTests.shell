@@ -38,8 +38,9 @@ diff -q "$received" "$approved" >/dev/null &&
         else
             echo "${test_name} passed"
         fi
-        echo ""
         rm "$received"
+        echo ""
+        true
     ) ||
     (
         if [ -t 1 ]; then

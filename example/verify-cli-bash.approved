@@ -1,11 +1,9 @@
 test: pass
 test1 passed
 
-
 test: fails and triggers diff tool
 test failed
 
     1d0
     < test 3 receives this input
-
 
