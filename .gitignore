@@ -1,2 +1,3 @@
+build/
 *.received*
 bash/failing-test.approved
