@@ -37,3 +37,4 @@ diff -q "$received" "$approved" >/dev/null &&
         fi
         false
     )
+
