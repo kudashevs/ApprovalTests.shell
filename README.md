@@ -38,5 +38,5 @@ echo "hello diff tool" | ./verify.sh -t hello-diff -d "git diff --no-index"
 
 (yes, `verify.sh` is used to test itself)
 ```bash
-(cd example && ./test.sh | ./verify.sh -t verify-cli-bash)
+(cd example && ./test.sh | ../verify.sh -t verify-cli-bash)
 ```
