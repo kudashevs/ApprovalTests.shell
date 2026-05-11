@@ -6,7 +6,7 @@
 
 
 This is a small [Approval-Tests](http://approvaltests.com/) utility for the CLI Approval testing.  
-It was forked from the [ApprovalTests.shell](https://github.com/approvals/ApprovalTests.shell). All credits to the authors.
+It was forked from the [ApprovalTests.shell](https://github.com/approvals/ApprovalTests.shell). My credits to the authors.
 
 
 ## Usage
@@ -18,7 +18,7 @@ Given a command `<command>` that produces some output to verify. Use the `verify
 
 When you run it for the first time, the utility creates `<test-name>.received` and `<test-name>.approved` files. If the `<command>` has produced the axpected output, copy the content of the received file to the approved file. Then, run the the above sequence once again. The test should be green.
 
-When the result of `<command>` changes during the development in the future, the existing test becomes red and the `<diff-tool>` command will be triggered on the output.
+When the result of `<command>` changes in the future during the development, the existing test brakes and becomes red, and the `<diff-tool>` command will be triggered on a new output.
 
 
 ### Examples
@@ -34,7 +34,7 @@ echo "hello diff tool" | ./verify.sh -t hello-diff -d "code --diff"
 ```
 
 
-## Self-Test
+### Self-Test
 
 Yes, the `verify.sh` is used to test itself:
 ```bash
