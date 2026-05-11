@@ -1,6 +1,6 @@
 #!/bin/bash
 
-default_diff_tool="code --diff"
+default_diff_tool="git diff --no-index"
 diff_tool=$default_diff_tool
 
 while getopts ":r:t:d:" opt; do
