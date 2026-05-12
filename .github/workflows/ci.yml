@@ -2,19 +2,24 @@ name: CI
 
 on:
   push:
+    tags:
+      - '*'
   pull_request:
   workflow_dispatch:
   schedule:
-    - cron:  '0 3 * * 4'
+    - cron:  '0 0 1 * *'
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: test bash verify.sh
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: test verify.sh itself
         run: (cd example && ./test.sh | ../verify.sh -t verify-cli-bash)
 
       - name: failure returns non-zero exit code
         run: '! (./verify.sh -t failing-test -d echo <<< "input")'
+
