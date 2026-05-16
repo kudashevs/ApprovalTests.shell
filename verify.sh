@@ -20,6 +20,16 @@ while getopts ":r:t:d:" opt; do
     esac
 done
 
+if [[ -z "$test_name" ]]; then
+    echo "Error: option -t is required." >&2
+    exit 1
+fi
+
+if [[ "$test_name" == -* ]]; then
+    echo "Error: option -t cannot start with hyphen." >&2
+    exit 1
+fi
+
 received="${test_name}.received"
 approved="${test_name}.approved"
 
