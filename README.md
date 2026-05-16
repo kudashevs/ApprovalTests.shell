@@ -16,9 +16,9 @@ Given a `<command>` that produces some output to verify. Use the `verify.sh` scr
 <command> | ./verify.sh -t <test-name> [-d <diff-tool>]
 ```
 
-When you run it for the first time, the utility creates `<test-name>.received` and `<test-name>.approved` files. If the `<command>` has produced the expected output, copy the content of the received file to the approved file. Then, run the above sequence once again. The test should be green.
+When you run it for the first time, the utility runs a red test and creates `<test-name>.received` and `<test-name>.approved` files. If the `<command>` has produced the expected output, copy the content of the `<test-name>.received` file to the `<test-name>.approved` file. Then, run the whole sequence once again. The test should become green.
 
-When the result of `<command>` changes in the future during the development, the existing test brakes and becomes red, and the `<diff-tool>` command will be triggered on a new output.
+When the output of `<command>` changes during future development, the test will fail and becomes red. When this occurs, the `<diff-tool>` command will be triggered on a new output.
 
 
 ### Examples
