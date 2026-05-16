@@ -8,7 +8,7 @@ RESET="\033[0m"
 CHECK="\u2713"
 CROSS="\u2715"
 
-default_diff_tool="git diff --no-index"
+default_diff_tool="git diff --no-index --no-prefix"
 diff_tool=${default_diff_tool}
 
 while getopts ":r:t:d:" opt; do
